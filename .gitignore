@@ -1,0 +1,14 @@
+# build output
+build/
+.gradle/
+local.properties
+*.apk
+*.aab
+.idea/
+*.iml
+
+# donated data must never be committed
+*.csv
+*.xlsx
+donations/
+.env
