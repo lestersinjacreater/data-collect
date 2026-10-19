@@ -5,7 +5,9 @@ import android.content.ClipData
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Bundle
+import android.provider.Settings
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.compose.setContent
@@ -85,6 +87,8 @@ private fun DonateApp() {
     var ownNumber by remember { mutableStateOf("") }
     var message by remember { mutableStateOf<String?>(null) }
     var busy by remember { mutableStateOf(false) }
+    // Set when Android refuses the SMS permission without showing a prompt (restricted settings).
+    var needsSettings by remember { mutableStateOf(false) }
 
     fun loadInbox() {
         scope.launch {
@@ -97,7 +101,13 @@ private fun DonateApp() {
     }
 
     val permission = rememberLauncherForActivityResult(ActivityResultContracts.RequestPermission()) { granted ->
-        if (granted) loadInbox() else message = s.permissionDenied
+        if (granted) {
+            needsSettings = false
+            loadInbox()
+        } else {
+            message = s.permissionDenied
+            needsSettings = true
+        }
     }
 
     Column(Modifier.fillMaxSize().padding(16.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
@@ -115,9 +125,19 @@ private fun DonateApp() {
                     onClick = {
                         val has = ContextCompat.checkSelfPermission(context, Manifest.permission.READ_SMS) ==
                             PackageManager.PERMISSION_GRANTED
-                        if (has) loadInbox() else permission.launch(Manifest.permission.READ_SMS)
+                        if (has) {
+                            needsSettings = false
+                            message = null
+                            loadInbox()
+                        } else {
+                            permission.launch(Manifest.permission.READ_SMS)
+                        }
                     },
                 ) { Text(s.agree) }
+                if (needsSettings) {
+                    Text(s.restrictedHelp, style = MaterialTheme.typography.bodyMedium)
+                    OutlinedButton(onClick = { openAppSettings(context) }) { Text(s.openSettings) }
+                }
             }
 
             Stage.CHOOSE -> {
@@ -211,6 +231,13 @@ private fun writeCsv(context: Context, redactor: Redactor, messages: List<RawSms
     val file = File(dir, "sms-donation-${redactor.donorId}.csv")
     file.writeText(Csv.render(messages.map(redactor::toRow)), Charsets.UTF_8)
     return file
+}
+
+/** Opens this app's page in Android Settings, where "Allow restricted settings" lives. */
+private fun openAppSettings(context: Context) {
+    val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS, Uri.fromParts("package", context.packageName, null))
+        .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+    context.startActivity(intent)
 }
 
 private fun share(context: Context, file: File) {

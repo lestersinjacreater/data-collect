@@ -7,6 +7,8 @@ data class Strings(
     val consentPoints: List<String>,
     val agree: String,
     val permissionDenied: String,
+    val restrictedHelp: String,
+    val openSettings: String,
     val chooseTitle: String,
     val chooseHelp: String,
     val ownNumberLabel: String,
@@ -34,7 +36,13 @@ data class Strings(
                 "When you finish, the file is deleted from this phone.",
             ),
             agree = "I understand and agree",
-            permissionDenied = "Permission to read SMS was denied, so nothing was read. You can try again.",
+            permissionDenied = "Permission to read SMS was not granted, so nothing was read.",
+            restrictedHelp = "Android blocks SMS access for apps installed from a downloaded file. To allow it:\n" +
+                "1. Tap \"Open app settings\".\n" +
+                "2. Tap the three dots (top right) and choose \"Allow restricted settings\". Confirm with your PIN or fingerprint.\n" +
+                "3. Tap Permissions, then SMS, then Allow.\n" +
+                "4. Come back here and tap the button again.",
+            openSettings = "Open app settings",
             chooseTitle = "Choose what to share",
             chooseHelp = "Everyone is included by default. Untick senders you want to keep out.",
             ownNumberLabel = "Your phone number (optional, so we can hide it)",
@@ -62,7 +70,13 @@ data class Strings(
                 "Ukimaliza, faili inafutwa kutoka kwenye simu hii.",
             ),
             agree = "Nimeelewa na nakubali",
-            permissionDenied = "Ruhusa ya kusoma SMS ilikataliwa, kwa hivyo hakuna kilichosomwa. Unaweza kujaribu tena.",
+            permissionDenied = "Ruhusa ya kusoma SMS haikutolewa, kwa hivyo hakuna kilichosomwa.",
+            restrictedHelp = "Android huzuia SMS kwa programu zilizosakinishwa kutoka faili iliyopakuliwa. Ili kuruhusu:\n" +
+                "1. Bonyeza \"Fungua mipangilio ya programu\".\n" +
+                "2. Bonyeza nukta tatu (juu kulia) kisha uchague \"Allow restricted settings\". Thibitisha kwa PIN au alama ya kidole.\n" +
+                "3. Bonyeza Permissions, kisha SMS, kisha Allow.\n" +
+                "4. Rudi hapa na ubonyeze kitufe tena.",
+            openSettings = "Fungua mipangilio ya programu",
             chooseTitle = "Chagua cha kushiriki",
             chooseHelp = "Kila mtu ameingizwa kwa chaguo-msingi. Ondoa tiki kwa watumaji usiotaka.",
             ownNumberLabel = "Nambari yako ya simu (hiari, ili tuifiche)",
