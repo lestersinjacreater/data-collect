@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SMS Donate: download</title>
+<meta name="description" content="One-time, consent-based SMS donation app for the Linda scam-detection hackathon team.">
+<style>
+  :root {
+    --bg: #f6f7f4; --card: #ffffff; --text: #1d2a22; --muted: #55645b;
+    --accent: #15803d; --accent-text: #ffffff; --border: #dfe4dc; --warn-bg: #fff7e0; --warn-border: #e5c76b;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #101713; --card: #18221c; --text: #e8efe9; --muted: #a2b2a8;
+      --accent: #4ade80; --accent-text: #08210f; --border: #2a3a30; --warn-bg: #2a2410; --warn-border: #7a6a2a;
+    }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text);
+         font: 16px/1.55 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+  main { max-width: 640px; margin: 0 auto; padding: 24px 16px 48px; }
+  header { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+  h1 { font-size: 1.6rem; margin: 0; line-height: 1.2; }
+  h2 { font-size: 1.1rem; margin: 0 0 8px; }
+  .card { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 18px; margin-top: 16px; }
+  .lead { color: var(--muted); margin: 8px 0 0; }
+  .btn { display: block; text-align: center; background: var(--accent); color: var(--accent-text);
+         text-decoration: none; font-weight: 700; padding: 16px; border-radius: 12px; font-size: 1.1rem; }
+  .btn:focus-visible, button:focus-visible { outline: 3px solid var(--text); outline-offset: 2px; }
+  button { font: inherit; background: transparent; color: var(--text); border: 1px solid var(--border);
+           border-radius: 999px; padding: 6px 14px; cursor: pointer; }
+  ol, ul { padding-left: 1.2rem; margin: 0; }
+  li { margin: 6px 0; }
+  .small { font-size: 0.875rem; color: var(--muted); margin: 10px 0 0; }
+  .warn { background: var(--warn-bg); border-color: var(--warn-border); }
+  [data-lang]:not([data-lang="en"]) { display: none; }
+  body.sw [data-lang="en"] { display: none; }
+  body.sw [data-lang="sw"] { display: revert; }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <h1><span data-lang="en">Donate my SMS</span><span data-lang="sw">Changia SMS zangu</span></h1>
+    <button id="toggle" type="button" aria-label="Switch language / Badili lugha">Kiswahili</button>
+  </header>
+  <p class="lead">
+    <span data-lang="en">A one-time donation of your received messages to help the hackathon team train Linda to spot M-Pesa scams.</span>
+    <span data-lang="sw">Mchango wa mara moja wa jumbe ulizopokea ili kusaidia timu ya hackathon kufundisha Linda kutambua ulaghai wa M-Pesa.</span>
+  </p>
+
+  <section class="card">
+    <a class="btn" id="dl" href="https://github.com/lestersinjacreater/data-collect/releases/download/latest/sms-donate.apk" download>
+      <span data-lang="en">Download for Android (APK)</span>
+      <span data-lang="sw">Pakua kwa Android (APK)</span>
+    </a>
+    <p class="small">
+      <span data-lang="en">Android only. If the button does nothing, open the
+        <a href="https://github.com/lestersinjacreater/data-collect/releases/tag/latest">releases page</a>.</span>
+      <span data-lang="sw">Android pekee. Kitufe kisipofanya kazi, fungua
+        <a href="https://github.com/lestersinjacreater/data-collect/releases/tag/latest">ukurasa wa matoleo</a>.</span>
+    </p>
+  </section>
+
+  <section class="card">
+    <h2><span data-lang="en">How to install</span><span data-lang="sw">Jinsi ya kusakinisha</span></h2>
+    <ol data-lang="en">
+      <li>Tap the download button and open the file when it finishes.</li>
+      <li>If Android asks, allow installs from this source (your browser). This is needed because the app is not on the Play Store.</li>
+      <li>If Play Protect warns you, tap "More details" then "Install anyway".</li>
+      <li>Open <b>SMS Donate</b>, read the notice, and follow the steps.</li>
+    </ol>
+    <ol data-lang="sw">
+      <li>Bonyeza kitufe cha kupakua na ufungue faili inapomaliza.</li>
+      <li>Android ikiuliza, ruhusu usakinishaji kutoka chanzo hiki (kivinjari chako). Hii inahitajika kwa sababu programu haipo Play Store.</li>
+      <li>Play Protect ikionya, bonyeza "Maelezo zaidi" kisha "Sakinisha hata hivyo".</li>
+      <li>Fungua <b>SMS Donate</b>, soma notisi, na ufuate hatua.</li>
+    </ol>
+  </section>
+
+  <section class="card warn">
+    <h2><span data-lang="en">What you are agreeing to</span><span data-lang="sw">Unachokubali</span></h2>
+    <ul data-lang="en">
+      <li>The app reads your received SMS once, on your phone.</li>
+      <li>Codes (OTP/PIN), ID numbers, card numbers and phone numbers are hidden before anything is saved.</li>
+      <li>You can leave out any sender, and you see examples before sharing.</li>
+      <li>The app has no internet access. It makes one spreadsheet file and <b>you</b> choose to send it to the team.</li>
+      <li>When you tap "Finish", the file is deleted from your phone.</li>
+      <li>It is voluntary. Do not install it if you would rather not.</li>
+    </ul>
+    <ul data-lang="sw">
+      <li>Programu inasoma SMS ulizopokea mara moja, kwenye simu yako.</li>
+      <li>Misimbo (OTP/PIN), nambari za kitambulisho, kadi na simu hufichwa kabla ya kuhifadhi.</li>
+      <li>Unaweza kuacha nje mtumaji yeyote, na unaona mifano kabla ya kushiriki.</li>
+      <li>Programu haina intaneti. Inatengeneza faili moja na <b>wewe</b> unachagua kuituma kwa timu.</li>
+      <li>Ukibonyeza "Maliza", faili inafutwa kwenye simu yako.</li>
+      <li>Ni hiari. Usisakinishe ukipendelea hivyo.</li>
+    </ul>
+  </section>
+
+  <p class="small">
+    <a href="https://github.com/lestersinjacreater/data-collect">Source code</a> ·
+    <a href="https://github.com/lestersinjacreater/data-collect/blob/main/docs/EXPLAINED.md">How it works</a>
+  </p>
+</main>
+<script>
+  // Remember the language choice, but never fail if storage is blocked.
+  var body = document.body, btn = document.getElementById('toggle');
+  function setLang(sw) {
+    body.classList.toggle('sw', sw);
+    document.documentElement.lang = sw ? 'sw' : 'en';
+    btn.textContent = sw ? 'English' : 'Kiswahili';
+    try { localStorage.setItem('lang', sw ? 'sw' : 'en'); } catch (e) {}
+  }
+  var saved = null;
+  try { saved = localStorage.getItem('lang'); } catch (e) {}
+  setLang(saved ? saved === 'sw' : (navigator.language || '').toLowerCase().indexOf('sw') === 0);
+  btn.addEventListener('click', function () { setLang(!body.classList.contains('sw')); });
+</script>
+</body>
+</html>

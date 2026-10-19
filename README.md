@@ -24,6 +24,10 @@ The messages are used to train the scam-detection model (Linda).
 ## CSV columns
 `donor_id, sender_id, sender_type (company|personal|shortcode|unknown), text, received_at (UTC ISO), label (empty: fill scam/safe later)`
 
+## Download page
+`docs/index.html` is a bilingual download page served by GitHub Pages (Settings → Pages → Deploy from branch → `main` / `/docs`).
+Its button points to the stable URL `releases/download/latest/sms-donate.apk`, so it never needs editing when the APK is rebuilt.
+
 ## Build
 - Push to `main`: GitHub Actions runs the redaction tests, builds the debug APK and
   publishes it under **Releases → Latest build**.
